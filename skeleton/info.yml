@@ -1,0 +1,21 @@
+id: org.boothub.slide-deck
+name: Slide Deck Template
+caption: Template for technical presentations that include code snippets
+
+version:
+  major: 1
+  minor: 0
+  patch: 0
+
+minimumRequiredBootHub:
+  major: 1
+  minor: 0
+  patch: 0
+
+# homepage: http://example.org
+
+# authors:
+#  - Jane Doe
+
+# tags:
+#  - java
