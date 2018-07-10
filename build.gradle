@@ -155,9 +155,6 @@ asciidoctor {
 }
 
 gitPublish {
-    System.properties['org.ajoberstar.grgit.auth.username'] = System.getenv('GH_PAGES_ACCESS_TOKEN') ?: ''
-    System.properties['org.ajoberstar.grgit.auth.password'] = ''
-
     repoUri = 'https://github.com/boothub-org/boothub-template-slide-deck.git'
     branch = 'gh-pages'
 
@@ -165,8 +162,6 @@ gitPublish {
         def pgType = project.hasProperty('ghPageType') ? ghPageType : 'latest'
         if (pgType == 'init') {
             from file("ghpages")
-        } else if (pgType == 'list') {
-            from file("build/release-list")
         } else {
             from file("${asciidoctor.outputDir.path}/html5")
             from file("build/docs")
