@@ -1,0 +1,106 @@
+{{~def 'languageLow' (lower language)~}}
+{{#def 'langExt'}}{{#ifb useKotlin}}kt{{else}}{{languageLow}}{{/ifb}}{{/def}}
+= {{talkName}}
+{{developers.[0].name}}
+:example-caption!:
+:deckjs_transition: fade
+:deckjs_theme: slides
+:navigation:
+:menu:
+:goto:
+:source-highlighter: prettify
+:codedir: pass:normal[{sourcedir}/{{languageLow}}/{{codeSnippetsDir}}]
+
+
+== What is {{language}}?
+
+[quote, A friend of mine]
+"{{language}} is the best programming language in the universe."
+
+
+== Who should learn {{language}}?
+
+Everybody should learn {{language}}!
+
+[%step]
+* *You* should learn {{language}}
+* *Your friends* should learn {{language}}
+* *Your cat* should learn {{language}}
+** the most successful cats in the world are proficient in {{language}}
+** bring your cat to a {{language}} training center today!
+
+
+[canvas-image=./img/learn.png]
+== Learning {{language}}
+
+[large bold]#Let's start learning {{language}}!#
+
+
+== Hello World
+
+[source,{{languageLow}}]
+----
+include::{codedir}/Hello1.{{langExt}}[indent=0]
+----
+
+[%step]
+* this program prints [green]#_Hello, world!_#
+* the `package` statement appears at the top of the source file
+* program arguments are passed as an array of strings
+
+== Hello World (with arguments)
+
+[.thumb]
+image::design.png[]
+
+[source,slide]
+----
+include::{codedir}/Hello2.{{langExt}}[tags=main,indent=0]
+----
+
+[%step]
+* if no argument is passed, the program prints [green]#_Hello, world!_#
+* otherwise, the value of the first argument is used in the greeting
+
+== Integer arithmetic operators
+[caption=]
+.Binary operators
+[cols="2*",options="header"]
+|===
+| Expression | Meaning
+| a + b | addition
+| a - b | subtraction
+| a * b | multiplication
+| a / b | division
+| a % b | remainder
+|===
+
+== Integer arithmetic operators
+[source,{{languageLow}}]
+----
+include::{codedir}/Arithmetic.{{langExt}}[tags=decl;add,indent=0]
+----
+
+== Integer arithmetic operators
+[source,{{languageLow}}]
+----
+include::{codedir}/Arithmetic.{{langExt}}[tags=decl;add;sub,indent=0]
+----
+
+== Integer arithmetic operators
+[source,{{languageLow}}]
+----
+include::{codedir}/Arithmetic.{{langExt}}[tags=decl;add;sub;mult,indent=0]
+----
+
+== Integer arithmetic operators
+[source,{{languageLow}}]
+----
+include::{codedir}/Arithmetic.{{langExt}}[tags=decl;add;sub;mult;div,indent=0]
+----
+
+== Integer arithmetic operators
+[source,{{languageLow}}]
+----
+include::{codedir}/Arithmetic.{{langExt}}[tags=decl;add;sub;mult;div;mod,indent=0]
+----

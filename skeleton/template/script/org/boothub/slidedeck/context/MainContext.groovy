@@ -15,5 +15,5 @@
  */
 package org.boothub.slidedeck.context
 
-class MainContext extends org.boothub.context.StandardProjectContext.LibSingle implements InfoContext {
+class MainContext extends org.boothub.context.StandardProjectContext.LibSingle implements TalkContext {
 }

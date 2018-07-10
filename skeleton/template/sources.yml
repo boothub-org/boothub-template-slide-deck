@@ -3,16 +3,58 @@
 artifact: {{artifact}}
 fileContexts:
     - !!org.boothub.context.SourceFileContext
-      fileName: JavaMain.java
+      fileName: Hello1.java
       targetBaseDir: src/main/java
       targetPackage: {{basePackage}}
-      targetFileClass: {{appMainClass}}
-      enabled: {{and appMainClass (compare artifact '==' appModule.artifact)}}
+      enabled: {{useJava}}
 
     - !!org.boothub.context.SourceFileContext
-      fileName: JavaUtil.java
+      fileName: Hello2.java
       targetBaseDir: src/main/java
       targetPackage: {{basePackage}}
-      targetFileClass: {{artifactAsClassName}}Util
-      enabled: {{or (not appMainClass) (compare artifact '!=' appModule.artifact)}}
+      enabled: {{useJava}}
+
+    - !!org.boothub.context.SourceFileContext
+      fileName: Arithmetic.java
+      targetBaseDir: src/main/java
+      targetPackage: {{basePackage}}
+      enabled: {{useJava}}
+
+
+    - !!org.boothub.context.SourceFileContext
+      fileName: Hello1.groovy
+      targetBaseDir: src/main/groovy
+      targetPackage: {{basePackage}}
+      enabled: {{useGroovy}}
+
+    - !!org.boothub.context.SourceFileContext
+      fileName: Hello2.groovy
+      targetBaseDir: src/main/groovy
+      targetPackage: {{basePackage}}
+      enabled: {{useGroovy}}
+
+    - !!org.boothub.context.SourceFileContext
+      fileName: Arithmetic.groovy
+      targetBaseDir: src/main/groovy
+      targetPackage: {{basePackage}}
+      enabled: {{useGroovy}}
+
+
+    - !!org.boothub.context.SourceFileContext
+      fileName: Hello1.kt
+      targetBaseDir: src/main/kotlin
+      targetPackage: {{basePackage}}
+      enabled: {{useKotlin}}
+
+    - !!org.boothub.context.SourceFileContext
+      fileName: Hello2.kt
+      targetBaseDir: src/main/kotlin
+      targetPackage: {{basePackage}}
+      enabled: {{useKotlin}}
+
+    - !!org.boothub.context.SourceFileContext
+      fileName: Arithmetic.kt
+      targetBaseDir: src/main/kotlin
+      targetPackage: {{basePackage}}
+      enabled: {{useKotlin}}
 {{/each}}

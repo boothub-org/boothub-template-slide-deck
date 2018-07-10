@@ -12,10 +12,17 @@ minimumRequiredBootHub:
   minor: 0
   patch: 0
 
-# homepage: http://example.org
+homepage: http://slide-deck.boothub.org
 
-# authors:
-#  - Jane Doe
+authors:
+  - Serban Iordache
 
-# tags:
-#  - java
+tags:
+  - deck.js
+  - slides
+  - slide deck
+  - asciidoctor
+  - asciidoc
+  - java
+  - groovy
+  - kotlin

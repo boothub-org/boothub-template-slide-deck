@@ -1,129 +1,88 @@
 {{~def 'prjId' (asJavaId ghProjectId)~}}
-{{~#def 'githubProjectUrl'}}https://github.com/{{ghProjectOwner}}/{{ghProjectId}}{{/def~}}
-{{~#def 'githubRepoUrl'}}{{githubProjectUrl}}.git{{/def~}}
-
-import org.apache.tools.ant.filters.ReplaceTokens
-import org.gradle.plugins.signing.Sign
-import javax.swing.*
+{{~def 'languageLow' (lower language)~}}
+buildscript {
+    dependencies {
+        classpath 'org.ysb33r.gradle:vfs-gradle-plugin:1.0'
+        classpath 'commons-httpclient:commons-httpclient:3.1'
+    }
+}
 
 plugins {
-    id 'java'
-    {{#ifb (and appMainClass (not multiModule))}}id 'application'{{/ifb}}
-    id 'eclipse'
-    id 'idea'
-    id 'maven-publish'
-    id "com.github.ethankhall.semantic-versioning" version "1.1.0"}
-
-project.version.with {
-    major = {{prjId}}VersionMajor as int
-    minor= {{prjId}}VersionMinor as int
-    patch = {{prjId}}VersionPatch as int
-    if (project.hasProperty('{{prjId}}VersionLabel')) {
-        preRelease = {{prjId}}VersionLabel
-    }
-    releaseBuild = Boolean.valueOf({{prjId}}ReleaseBuild)
+    id 'org.asciidoctor.convert' version '1.5.8.1'
+    id 'com.github.jruby-gradle.base' version '1.5.0'
 }
-ext.{{prjId}}Version = project.version as String
-ext.{{prjId}}Tag = Boolean.valueOf({{prjId}}ReleaseBuild) ? "v$ext.{{prjId}}Version" : 'master'
 
+apply plugin: 'com.github.jruby-gradle.base'
+apply plugin: 'org.ysb33r.vfs'
+apply plugin: '{{languageLow}}'
+apply plugin: 'org.asciidoctor.convert'
 
-
-
-group = '{{group}}'
 version = {{prjId}}Version
 
-tasks.withType(Javadoc) {
-    options.addStringOption('Xdoclint:all,-syntax,-missing', '-quiet')
+ext {
+    deckjsVersion = 'master'
+    asciidoctorBackendVersion = 'master'
+    downloadDir = new File(buildDir,'download')
+    templateDir = new File(downloadDir,'templates')
+    deckjsDir   = new File(downloadDir,'deck.js')
+    deckjsVersionDir = new File(downloadDir,"deck.js-master")
 }
 
-
-
-        
 repositories {
     jcenter()
-    mavenCentral()
 }
-
-
-
-sourceCompatibility = 1.8
-
-def defaultEncoding = 'UTF-8'
-[compileJava, compileTestJava]*.options*.encoding = defaultEncoding
-
-
 
 dependencies {
-    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.21'
-
-    runtime ('ch.qos.logback:logback-classic:1.1.7')
+    {{#ifb useGroovy}}compile "org.codehaus.groovy:groovy-all:2.5.0"{{/ifb}}
+    gems 'rubygems:haml:5.0.4'
 }
 
-jar {
-    manifest {
-        attributes 'Implementation-Title': "${project.archivesBaseName}",
-                'Implementation-Version': {{prjId}}Version
+task download {
+    doLast {
+        mkdir downloadDir
+        vfs {
+            cp "zip:https://github.com/asciidoctor/asciidoctor-deck.js/archive/${asciidoctorBackendVersion}.zip!asciidoctor-deck.js-${asciidoctorBackendVersion}/templates", templateDir, recursive:true, overwrite:true, smash: true
+            cp "zip:https://github.com/imakewebthings/deck.js/archive/${deckjsVersion}.zip!deck.js-${deckjsVersion}", deckjsDir, recursive:true, overwrite:true, smash: true
+        }
+        deckjsVersionDir.renameTo(deckjsDir)
     }
 }
 
-task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
+download {
+    description "Download extra deckjs resources"
+    outputs.dir templateDir
+    outputs.dir deckjsDir
 }
 
-task javadocJar(type: Jar, dependsOn: classes) {
-    classifier "javadoc"
-    from javadoc
+asciidoctorj {
+    version = '1.5.7'
 }
 
-artifacts {
-    archives(sourcesJar, javadocJar)
-}
+asciidoctor {
+    dependsOn jrubyPrepare
 
-
-
-
-{{#each modules~}}
-{{#def 'projectBlockPrefix'}}project('{{artifact}}') { {{/def}}
-{{#encloseIf multiModule prefix=projectBlockPrefix suffix="}"~}}
-
-{{~#if multiModule}}
-{{#ifb (and appMainClass (compare artifact '==' appModule.artifact))}}apply plugin: 'application'{{/ifb}}
-dependencies {
-    {{~#each dependsOn}}
-    compile project(':{{artifact}}')
-    {{~/each}}
-    {{#ifb (and appMainClass (compare artifact '==' appModule.artifact))}}runtime ('ch.qos.logback:logback-classic:1.1.7'){{/ifb}}
-}
-{{~/if}}
-{{~#ifb (compare artifact '==' appModule.artifact)}}
-artifacts {
-    archives(sourcesJar, javadocJar)
-}
-{{~#if appMainClass}}
-jar {
-    manifest {
-        attributes 'Main-Class': '{{appModule.basePackage}}.{{appMainClass}}'
+    sources {
+        include '{{ghProjectId}}.adoc'
     }
+
+    resources {
+        from (sourceDir) {
+            include 'img/**'
+            include 'deck.js/**'
+        }
+        from (downloadDir) {
+            include 'deck.js/**'
+        }
+    }
+
+    backends 'html5'
+
+    attributes \
+        'prjdir': "$project.rootDir",
+        'sourcedir': "$project.rootDir/src/main",
+        'imagesdir': './img'
+
+    options template_dirs : [new File(templateDir,'haml').absolutePath ]
+
+    dependsOn download
 }
-mainClassName = '{{appModule.basePackage}}.{{appMainClass}}'
-
-applicationName = "{{prjId}}"
-
-startScripts {
-    defaultJvmOpts = ['-Dlogback.configurationFile=logback.xml']
-}
-
-applicationDistribution.from("${rootProject.projectDir}/dist") {
-    filter(ReplaceTokens, tokens:[{{prjId}}Version : {{prjId}}Version])
-}
-
-applicationDistribution.from("${rootProject.projectDir}/..") {
-    include('LICENSE')
-}
-{{~/if}}
-{{~/ifb}}
-{{/encloseIf}}
-{{/each}}
-
-

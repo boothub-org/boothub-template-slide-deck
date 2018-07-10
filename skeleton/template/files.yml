@@ -3,3 +3,21 @@ filePath: ___gitignore
 targetPath: .gitignore
 
 
+--- !!org.boothub.context.FileContext
+filePath: build.gradle
+enabled: {{or useJava useGroovy}}
+
+
+--- !!org.boothub.context.FileContext
+filePath: build.gradle.kts
+enabled: {{useKotlin}}
+
+--- !!org.boothub.context.FileContext
+filePath: settings.kts
+enabled: {{useKotlin}}
+
+
+--- !!org.boothub.context.FileContext
+filePath: src/docs/asciidoc/slides.adoc
+targetPath: src/docs/asciidoc/{{ghProjectId}}.adoc
+

@@ -12,14 +12,16 @@ Download the generated zip file and unpack it. In the {{ghProjectId}} directory 
 
 &#8226; *On Linux or Mac OS:*
 ```
-./gradlew build
+./gradlew build asciidoctor
 ```
 
 &#8226; *On Windows:*
 ```
-gradlew build
+gradlew build asciidoctor
 ```
 
+Open `build/asciidoc/html5/{{projectId}}.html` in your browser to see the generated slide deck skeleton.
 
+Change the slides by editing the file `src/docs/asciidoc/{{projectId}}.adoc`.
 
-See the template documentation for more info.
+See the [template documentation](http://slide-deck.boothub.org) for more info.
