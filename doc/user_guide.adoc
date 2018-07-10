@@ -1,0 +1,15 @@
+[[user_guide]]
+= User Guide
+
+After generating the project skeleton and creating a working copy on your computer, you can build the project that contains the code snippets with:
+
+----
+gradlew build
+----
+
+You can generate the slides by executing:
+----
+gradlew asciidoctor
+----
+
+Then, open the HTML file found in `build/asciidoc/html5` in your browser.
