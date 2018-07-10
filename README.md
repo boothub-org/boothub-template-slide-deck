@@ -13,7 +13,7 @@ an HTML presentation powered by [deck.js](http://imakewebthings.com/deck.js/).
 The code snippets in your presentation are taken from a codebase.
 This ensures that your slides always contain valid and up-to-date code. 
 You can [include](https://asciidoctor.org/docs/user-manual/#include-directive)
-whole files or [only portions](https://asciidoctor.org/docs/user-manual/#include-partial) of them.
+whole source code files or [only portions](https://asciidoctor.org/docs/user-manual/#include-partial) of them.
 
 A Gradle script lets you build the codebase and generate the HTML presentation.
 
@@ -21,5 +21,5 @@ Read the [documentation](http://slide-deck.boothub.org) for more details about t
 
 ### Quick start
 
-You can generate a project skeleton based on the Slide-Deck template by using the [BootHub GUI](https://boothub.org/app#/home/true/https%3A%2F%2Fgithub.com%2Fboothub-org%2Fboothub-template-slide-deck%2Freleases%2Fdownload%2Fv1.0.0%2Fslide-deck-1.0.0.zip)
+You can generate a project skeleton based on the Slide-Deck template by using the [BootHub GUI](https://boothub.org/goto/org.boothub.slide-deck)
 or the [BootHub CLI](https://boothub.org/app#/cli).
