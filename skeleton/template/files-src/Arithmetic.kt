@@ -2,7 +2,7 @@ package {{targetPackage}}
 
 fun main(args: Array<String>) {
     // tag::decl[]
-    val x  = 6
+    val x = 6
     val y = 2
     // end::decl[]
     // tag::add[]
