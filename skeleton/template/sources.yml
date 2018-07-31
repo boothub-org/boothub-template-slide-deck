@@ -3,7 +3,7 @@
 artifact: {{artifact}}
 fileContexts:
     - !!org.boothub.context.SourceFileContext
-      fileName: Hello1.java
+      fileName: Hello.java
       targetBaseDir: src/main/java
       targetPackage: {{basePackage}}
       enabled: {{useJava}}
@@ -22,7 +22,7 @@ fileContexts:
 
 
     - !!org.boothub.context.SourceFileContext
-      fileName: Hello1.groovy
+      fileName: Hello.groovy
       targetBaseDir: src/main/groovy
       targetPackage: {{basePackage}}
       enabled: {{useGroovy}}
@@ -41,7 +41,7 @@ fileContexts:
 
 
     - !!org.boothub.context.SourceFileContext
-      fileName: Hello1.kt
+      fileName: Hello.kt
       targetBaseDir: src/main/kotlin
       targetPackage: {{basePackage}}
       enabled: {{useKotlin}}

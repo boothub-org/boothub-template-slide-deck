@@ -40,7 +40,7 @@ Everybody should learn {{language}}!
 
 [source,{{languageLow}}]
 ----
-include::{codedir}/Hello1.{{langExt}}[indent=0]
+include::{codedir}/Hello.{{langExt}}[indent=0]
 ----
 
 [%step]

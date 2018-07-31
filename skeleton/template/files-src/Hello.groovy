@@ -1,6 +1,6 @@
 package {{targetPackage}}
 
-class Hello1 {
+class Hello {
     static void main(String[] args) {
         println 'Hello, world!'
     }
