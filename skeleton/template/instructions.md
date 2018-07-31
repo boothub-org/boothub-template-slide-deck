@@ -20,8 +20,8 @@ Download the generated zip file and unpack it. In the {{ghProjectId}} directory 
 gradlew build asciidoctor
 ```
 
-Open `build/asciidoc/html5/{{projectId}}.html` in your browser to see the generated slide deck skeleton.
+Open _build/asciidoc/html5/{{projectId}}.html_ in your browser to see the generated slide deck skeleton.
 
-Change the slides by editing the file `src/docs/asciidoc/index.adoc`.
+Change the slides by editing the file _src/docs/asciidoc/index.adoc_.
 
 See the [template documentation](http://slide-deck.boothub.org) for more info.
