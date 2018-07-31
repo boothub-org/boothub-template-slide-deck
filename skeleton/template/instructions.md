@@ -22,6 +22,6 @@ gradlew build asciidoctor
 
 Open `build/asciidoc/html5/{{projectId}}.html` in your browser to see the generated slide deck skeleton.
 
-Change the slides by editing the file `src/docs/asciidoc/{{projectId}}.adoc`.
+Change the slides by editing the file `src/docs/asciidoc/index.adoc`.
 
 See the [template documentation](http://slide-deck.boothub.org) for more info.

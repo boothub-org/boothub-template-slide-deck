@@ -80,7 +80,7 @@ tasks.withType<AsciidoctorTask> {
     dependsOn(jrubyPrepare, downloadTask)
 
     sources(delegateClosureOf<PatternSet> {
-        include("{{ghProjectId}}.adoc")
+        include("index.adoc")
     })
 
     resources(delegateClosureOf<CopySpec> {

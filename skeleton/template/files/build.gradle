@@ -62,7 +62,7 @@ asciidoctor {
     dependsOn jrubyPrepare
 
     sources {
-        include '{{ghProjectId}}.adoc'
+        include 'index.adoc'
     }
 
     resources {
