@@ -12,4 +12,4 @@ You can generate the slides by executing:
 gradlew asciidoctor
 ----
 
-Then, open the HTML file found in `build/asciidoc/html5` in your browser.
+Then, open the index.html file found in `build/asciidoc/html5` in your browser.

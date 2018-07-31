@@ -4,5 +4,6 @@
 NOTE: The source code is available on https://github.com/boothub-org/boothub-template-slide-deck[GitHub] and is licensed under the {blob-root}/LICENSE[Apache-2.0 license].
 
 The Slide-Deck BootHub template allows you to create a slide deck that includes code snippets written in Java, Groovy, or Kotlin.
+Click https://slide-deck.boothub.org/sample[here] for a sample.
 
 It provides a Gradle build file that builds the code containing the snippets and creates the slide deck in HTML format.

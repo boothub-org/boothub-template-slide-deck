@@ -17,7 +17,10 @@ whole source code files or [only portions](https://asciidoctor.org/docs/user-man
 
 A Gradle script lets you build the codebase and generate the HTML presentation.
 
-Read the [documentation](http://slide-deck.boothub.org) for more details about this template.
+Click [here](https://slide-deck.boothub.org/sample/)
+to see a sample slide deck produced by this template and read the
+[documentation](http://slide-deck.boothub.org) for more details. 
+
 
 ### Quick start
 

@@ -8,3 +8,5 @@ This ensures that your slides always contain valid and up-to-date code.
 You can include whole source code files or only portions of them.
 
 A Gradle script lets you build the codebase and generate the HTML presentation.
+
+Click [here](https://slide-deck.boothub.org/sample/) to see a sample slide deck produced by this template.
