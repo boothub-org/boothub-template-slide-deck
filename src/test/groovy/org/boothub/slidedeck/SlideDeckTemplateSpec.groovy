@@ -67,7 +67,7 @@ def "should create a valid artifact using base-context.yml"() {
         assert builder.checkTask(taskName, gradleResult)
         def docDir = gradleResult.projectPath.resolve('build/asciidoc/html5').toFile()
         assert docDir.directory
-        assert docDir.list() as Set == ['img', 'deck.js', 'weirdo.html'] as Set
+        assert docDir.list() as Set == ['img', 'deck.js', 'index.html'] as Set
         true
     }
 
